@@ -13,7 +13,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    let value: String = "Value of some value"
 
 }
 
