@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoryDataObject {
+class Category {
     
     var name: String?
     var sortOrder: String?

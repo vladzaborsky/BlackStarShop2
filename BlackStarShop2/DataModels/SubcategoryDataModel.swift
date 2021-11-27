@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SubcategoryDataObject {
+class Subcategory {
     
     var id: String?
     var iconImage: String?

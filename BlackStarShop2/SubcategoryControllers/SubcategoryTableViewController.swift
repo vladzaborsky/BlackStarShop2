@@ -10,7 +10,7 @@ import UIKit
 class SubcategoryTableViewController: UITableViewController {
     
     var categoryName = ""
-    var selectedCategory: [SubcategoryDataObject] = []
+    var selectedCategory: [Subcategory] = []
     private let subcategoryCellIdentifier = "subcategoryCell"
     
     override func viewDidLoad() {
@@ -53,5 +53,7 @@ class SubcategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryTableViewController: UITableViewController {
     
-    var categoryObjectsFromJson: [CategoryDataObject] = []
+    var categoryObjectsFromJson: [Category] = []
     private let reuseCategoryCellIdentifier = "categoryCell"
     
     
@@ -73,12 +73,12 @@ class CategoryTableViewController: UITableViewController {
         
         let selectedCategory = categoryObjectsFromJson[indexPath.row].subcategories as NSArray
         let selectedCategoryName = categoryObjectsFromJson[indexPath.row].name!
-        var selectedSubCat: [SubcategoryDataObject] = []
+        var selectedSubCat: [Subcategory] = []
         
         // Create Subcategory object in cycle and append in selectedSubCat
         for index in selectedCategory {
             if let subcategory = index as? NSDictionary {
-                if let subcategoryObject = SubcategoryDataObject(subcategoryData: subcategory as NSDictionary) {
+                if let subcategoryObject = Subcategory(subcategoryData: subcategory as NSDictionary) {
                     selectedSubCat.append(subcategoryObject)
                 }
             }

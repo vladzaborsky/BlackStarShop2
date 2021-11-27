@@ -16,7 +16,7 @@ class NetworkManager {
     
     //MARK: - Download Data Method
     
-    func downloadData(url: String, completion: @escaping ([CategoryDataObject]) -> Void ) {
+    func downloadData(url: String, completion: @escaping ([Category]) -> Void ) {
         
         let url = URL(string: url) // переводим string в URL
         guard let safeDataUrl = url else { return } // проверяем, что URL существует (безопасный)
@@ -27,9 +27,9 @@ class NetworkManager {
             
             let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
             if let jsonDictionary = json as? NSDictionary {
-                var arrayOfCategoryData: [CategoryDataObject] = []
+                var arrayOfCategoryData: [Category] = []
                 for (_, category) in jsonDictionary {
-                    if let categoryObject = CategoryDataObject(data: category as! NSDictionary) {
+                    if let categoryObject = Category(data: category as! NSDictionary) {
                         arrayOfCategoryData.append(categoryObject)
                     }
                 }
