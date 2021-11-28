@@ -11,4 +11,6 @@ struct Constants {
     
     static var categoriesUrl = "https://blackstarshop.ru/index.php?route=api/v1/categories"
     static var baseUrl = "https://blackstarshop.ru/"
+    static var productsUrl = "https://blackstarshop.ru/index.php?route=api/v1/products&cat_id="
+    static var productUrl = " "
 }

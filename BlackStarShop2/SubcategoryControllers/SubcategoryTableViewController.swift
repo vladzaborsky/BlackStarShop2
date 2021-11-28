@@ -9,7 +9,7 @@ import UIKit
 
 class SubcategoryTableViewController: UITableViewController {
     
-    var categoryName = ""
+    var categoryName: String?
     var selectedCategory: [Subcategory] = []
     private let subcategoryCellIdentifier = "subcategoryCell"
     
@@ -53,6 +53,12 @@ class SubcategoryTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let selectedProducts = selectedCategory[indexPath.row].id else { return }
+        
+        let productsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "productsController") as! ProductsCollectionViewController
+        productsVC.productID = selectedProducts
+        navigationController?.pushViewController(productsVC, animated: true)
         
         
     }

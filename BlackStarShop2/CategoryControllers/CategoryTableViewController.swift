@@ -18,7 +18,7 @@ class CategoryTableViewController: UITableViewController {
         
         setupViews()
         
-        NetworkManager.shared.downloadData(url: Constants.categoriesUrl) { data in
+        NetworkManager.shared.downloadCategoryData(url: Constants.categoriesUrl) { data in
             self.categoryObjectsFromJson = data
             
             DispatchQueue.main.async {

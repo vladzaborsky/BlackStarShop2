@@ -14,9 +14,9 @@ class NetworkManager {
     
     var imageCache = NSCache<NSString, UIImage>()
     
-    //MARK: - Download Data Method
+    //MARK: - Download Data Method for Category
     
-    func downloadData(url: String, completion: @escaping ([Category]) -> Void ) {
+    func downloadCategoryData(url: String, completion: @escaping ([Category]) -> Void ) {
         
         let url = URL(string: url) // переводим string в URL
         guard let safeDataUrl = url else { return } // проверяем, что URL существует (безопасный)
@@ -34,6 +34,36 @@ class NetworkManager {
                     }
                 }
                 completion(arrayOfCategoryData)
+            }
+        }
+        task.resume()
+    }
+    
+    //MARK: - Download Data Method for Product
+    
+    func downloadProductsData(url: String, completion: @escaping ([Product]) -> Void) {
+        
+        let URL = URL(string: url)
+        guard let safeProductsUrl = URL else { return }
+        
+        let request = URLRequest(url: safeProductsUrl)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            if let jsonDictionary = json as? NSDictionary {
+                var arrayOfProducts: [Product] = []
+                for (_, product) in jsonDictionary {
+                    if let productsObject = Product(productData: product as! NSDictionary) {
+                        print(productsObject)
+                        // Вот тут экземпляр класса Product не добавляется в массив arrayOfProducts
+                         arrayOfProducts.append(productsObject)
+                    }
+                }
+                // проверяю кол-во объектов в массиве после цикла for in, получается 0
+                print(arrayOfProducts.count)
+                completion(arrayOfProducts)
             }
         }
         task.resume()
