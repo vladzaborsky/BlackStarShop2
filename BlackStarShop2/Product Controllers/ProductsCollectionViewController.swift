@@ -17,13 +17,17 @@ class ProductsCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        guard let productID1 = productID else { return }
+        guard let unwrappedProductID = productID else { return }
     
-        NetworkManager.shared.downloadProductsData(url: Constants.productsUrl + productID1) { dataProducts in
+        NetworkManager.shared.downloadProductsData(url: Constants.productsUrl + unwrappedProductID) { dataProducts
+            in
+            
+            self.products = dataProducts
+            
         }
         
-        setupViews()
         
+        setupViews()
     }
     
     // MARK: Setup Views Function
@@ -38,12 +42,6 @@ class ProductsCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return 0
@@ -52,7 +50,6 @@ class ProductsCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCollectionViewCell
     
-        
         return cell
     }
 

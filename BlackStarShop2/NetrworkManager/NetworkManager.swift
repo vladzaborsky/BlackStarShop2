@@ -56,13 +56,9 @@ class NetworkManager {
                 var arrayOfProducts: [Product] = []
                 for (_, product) in jsonDictionary {
                     if let productsObject = Product(productData: product as! NSDictionary) {
-                        print(productsObject)
-                        // Вот тут экземпляр класса Product не добавляется в массив arrayOfProducts
-                         arrayOfProducts.append(productsObject)
+                        arrayOfProducts.append(productsObject)
                     }
                 }
-                // проверяю кол-во объектов в массиве после цикла for in, получается 0
-                print(arrayOfProducts.count)
                 completion(arrayOfProducts)
             }
         }

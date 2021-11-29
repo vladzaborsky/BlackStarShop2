@@ -31,7 +31,6 @@ class CategoryTableViewController: UITableViewController {
     }
     
     // Setup views
-    
     private func setupViews() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Категории"
@@ -89,7 +88,6 @@ class CategoryTableViewController: UITableViewController {
         subcategoryVC.selectedCategory = selectedSubCat
         navigationController?.pushViewController(subcategoryVC, animated: true)
     }
-    
 }
 
 
